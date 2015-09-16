@@ -1,0 +1,67 @@
+{% extends "main.html" %}
+
+{% block title %}Items{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    
+    <style>
+        .item {
+            display: block;
+            margin-bottom: 1em;
+            font-size: 1.2em;
+        }
+        .item div {
+            margin-top: 0em;
+            display: none;
+        }
+        .item li {
+            font-size: .8em;
+        }
+        .item h3 span{
+            font-size: .8em;
+            margin-left: 1em;
+        }
+        .item h3 .btn {
+            float: right;
+            display: none;
+        }
+        .item:hover h3 .btn {
+            display: block;
+        }
+        .item.selected h3 .btn {
+            display: block;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function(){
+            $(".item").click(function(){
+                if($(this).hasClass("selected")){
+                    $(this).children("div").slideUp();
+                } else {
+                    $(this).children("div").slideDown();
+                }
+                $(this).toggleClass("selected");
+            });
+            $(".item").css({cursor:"pointer"})
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+
+<ul id="items">
+{% for i, b in books %}
+    <li id="{{i.key}}" class="item">
+        <h3>{{i.name}}<span>({{b.price[0]}})</span> <a href="/order?type=bid&item={{i.key}}" type="button" class="user_only btn btn-success">Buy this item!</a></h3> 
+        <div>
+            <ul>
+                <li>top bid: {{b.price[1]}}</li>
+                <li>top ask: {{b.price[2]}}</li>
+            </ul>
+        </div>
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock %}

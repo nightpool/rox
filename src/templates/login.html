@@ -1,0 +1,54 @@
+{% extends "main.html" %}
+
+{% block title %}Signup{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    
+    <style>
+        form {
+            width: 400px;
+            margin: 3em auto;
+            text-align: center;
+            border: solid #aaa 1px;
+            padding: 20px 0;
+            position: relative;
+        }
+        form div {
+            margin:1em;
+            display: inline-block;
+        }
+        form input {
+            margin: 0px 0;
+            margin-left: 1em;
+        }
+        input[type="submit"] {
+            display: block;
+            margin: 0 auto;
+        }
+        #signup {
+            float: right;
+            position: absolute;
+            left: 410px;
+            top: 0;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: 1px solid #428BCA;
+            padding: 10px;
+        }
+        #signup:hover {
+            text-decoration: none;
+            color: #428BCA;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+<form method="post" action="{{url_for('.login')}}">
+        <a id="signup" href="/user/signup">Signup <i class="glyphicon glyphicon-chevron-right"></i></a>
+        {{render_field(form.name)}}
+        {{render_field(form.password)}}
+        <input type="submit" value="Login">
+</form>
+{% endblock %}

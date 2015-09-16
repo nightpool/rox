@@ -1,0 +1,74 @@
+{% macro render_field(field) %}
+    <div class="field">
+    {{ field.label }}
+    {{ field(title=field.description, **kwargs)|safe }}
+    {% if field.errors %}
+        <ul class="form-error">
+        {% for error in field.errors %}
+            {% if error %}
+            <li class="flash error">{{ error }}</li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    {% endif %}
+    </div>  
+{% endmacro %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock %} | Realm Online Exchange</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/style.css" rel="stylesheet">
+        <link rel="shortcut icon" href="/static/icon.png">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="/static/jq.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed ->
+        <script src="/static/bootstrap/js/bootstrap.min.js"></script> -->
+        <script type="text/javascript">
+            $(function(){
+                $("#messages li").each(function(i, e){
+                    setTimeout(function(){
+                        $(e).fadeOut({duration: 700, queue: false});
+                    }, 1500*(i+1))
+                })
+            })
+        </script>
+    {% endblock %}
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <!-- <h3 class="text-muted">R<span class="expando">ealm&nbsp;</span>O<span class="expando">nline e</span>X<span class="expando">change</span></h3> -->
+        {%block header%}<h3 class="text-muted">Realm Online Exchange</h3>{%endblock%}
+        <ul id="top-nav" class="nav nav-pills pull-right">
+            <li class="main"><a href="/">Main</a></li>
+            <li class="prices bld"><a href="/items">Current Prices</a></li>
+            
+            {%if 'login' in session%}<li class='profile active'><a href="/user/{{session.login}}">{{session.login|title}}</a></li>
+            {%else%}<li class="login"><a href="/user/login">Login</a></li>{%endif%}
+        </ul>
+        <ul id="messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages -%}
+            <li class="flash {{category}}">{{ message }}</li>
+        {%- endfor %}
+        {% endwith %}
+        </ul><span style="display:block;clear:both;"></span>
+    </div>
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>

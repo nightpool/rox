@@ -1,0 +1,143 @@
+{% extends "main.html" %}
+
+{% block title %}Main Page{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    
+    <style>
+        /**************/
+        #main-text {
+            width: 65%;
+            max-width: 50em;
+            float: left;
+            padding-bottom: 15px;
+            padding-top: 20px;
+            height: 100%;
+            border: 2px solid #555;
+            background-color: #f5f5f5;
+            margin-bottom: 0em;
+        }
+        #main-text h1 {
+            font-size: 50px;
+            margin-top: 0;
+            margin-bottom: .5em;
+            line-height: 1.4em;
+        }
+        #main-text p {
+            font-weight: 100;
+        }
+        /**************/
+        #call a {
+            display: block;
+            border-radius: 4px;
+            border: 2px solid #555;
+            color: inherit !important;
+            text-decoration: none;
+            padding: 1.7em;
+            padding-left: 1em;
+            margin-bottom: 30px;
+        }
+        #call a:hover {
+            background-color: #ddd;
+        }
+        #call {
+            float: right;
+            height: 100%;
+            width: 30%;
+        }
+        #call h2 {
+            margin-top: 0;
+            margin-bottom: .5em;
+            font-size: 1.7em;
+            font-weight: bold;
+        }
+        #call i {
+            float: right;
+            display: relative;
+            top: 50%;
+        }
+        #call #register {
+            border-color: #0A700A;
+        }
+        #call #register:hover {
+            background-color: #D6FCD6;
+        }
+        #register i{
+            color:#10B410;
+        }
+        #call #continue i {
+            color:#00D5D5;
+        }
+        #call #continue {
+            border-color:#007979;   
+        }
+        #call #continue:hover {
+            background-color:#D6F8F8;   
+        }
+        #call #third {
+            border-color:#CB3E01;   
+        }
+        #call #third:hover {
+            background-color:#FFFCCE;   
+        }
+        #call #third i {
+            color:#DC9501;   
+        }
+        /**************/
+        .marketing {
+            width: 65%;
+        }
+        .marketing div {
+            margin-top: 0;
+        }
+        .marketing h4 {
+            font-weight: bold;
+            border-bottom: 2px solid #aaa;
+            display: block;
+            padding-bottom: .2em;
+            margin-top: 0;
+        }
+        .marketing p {
+            margin-bottom: 2em;
+        }
+        .rox {
+            font-family: Orbitron;
+            /*font-variant: small-caps;*/
+            text-transform: lowercase;
+        }
+    </style>
+{% endblock %}
+{%block header%}<h3 class="text-muted">Rox</h3>{%endblock%}
+{% block content %}
+    <div id="main-text" class="jumbotron">
+        <h1>Realm Online Exchange</h1>
+        <p><span class="rox">ROX</span> is a platform for trading goods from the online game Realm Of The Mad God</p>
+    </div>
+    <div id="call">
+        <a href="/user/signup" id="register"><h2>Register a Character <i class="glyphicon glyphicon-ok"></i></h2> Sign up and start trading</a>
+        <a href="/items" id="continue"><h2>See Current Prices <i class="glyphicon glyphicon-chevron-right"></i></h2> See current prices and orders</a>
+        <a href="/about" id="third"><h2>Read More <i class="glyphicon glyphicon-list"></i></h2> About Realm Online Exchange</a>
+    </div>
+    <div class="marketing row pull-left">
+        <div class="col-lg-6">
+            <h4>Reliable</h4> <!-- give graphic to each -->
+            <p><span class="rox">ROX</span> will give you the best price, guaranteed</p>
+
+            <h4>Easy-To-Use</h4>
+            <p><span class="rox">ROX</span> is easy to use, and all actions can be done in-game</p>
+
+            
+            <h4>Fast</h4>
+            <p>Trades in <span class="rox">ROX</span> often complete with in seconds</p>
+        </div>
+        <div class="col-lg-6">
+            <h4>Convienent</h4>
+            <p><span class="rox">ROX</span> makes it easy to decide what price to pay, and ensure you get what your good is worth</p>
+
+            <h4>Safe</h4>
+            <p>Unlike real money websites, <span class="rox">ROX</span> is built by users, for users. All trades are backed by other users, just like you</p>
+        </div>
+    </div>
+
+{% endblock %}

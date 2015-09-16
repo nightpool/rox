@@ -1,0 +1,43 @@
+{% extends "main.html" %}
+
+{% block title %}Signup{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    
+    <style>
+        form {
+            width: 400px;
+            margin: 3em auto;
+            border: solid #aaa 1px;
+            padding: 20px 0;
+        }
+        form div {
+            display: inline-block;
+            margin: 1em;
+        }
+        form label {
+
+        }
+        form input {
+            margin: 0px 0;
+            margin-left: 1em;
+        }
+        input[type="submit"] {
+            display: block;
+            margin: 0 auto;
+            padding: .2em .5em;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+<form method="post" action="{{url_for('.signup')}}">
+        {{render_field(form.name)}}
+        {{render_field(form.password)}}
+        {{render_field(form.email)}}
+        <input type="submit" value="Signup!">
+</form>
+
+{% endblock %}

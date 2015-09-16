@@ -1,0 +1,114 @@
+{% extends "main.html" %}
+
+{% block title %}{{user.name}}{% endblock %}
+
+{% block head %}
+    {{super()}}
+    <style type="text/css">
+        .user h1 {
+            display: inline;
+            padding-right: .4em;
+        }
+        .user {
+            font-size: 1.2em;
+            margin-top: 2.5em;
+            text-align: center;
+        }
+        .box {
+            margin-top: 0;
+            border: 2px #555 solid;
+            padding: 2em;
+            padding-top: 0;
+        }
+        .inventory {
+            float: left;
+            width: 500px;
+        }
+        .trades {
+            float: right;
+            width: 500px;
+        }
+        .box h2 {
+            padding-bottom: .3em;
+            border-bottom: solid 2px black; 
+            margin-bottom: 1em;
+            /*width: 350px;*/
+        }
+        h2 .btn {
+            margin-left: 15px;
+            float: right;
+        }
+        .box ul {
+            font-size: 1.35em;
+            list-style: disc;
+        }
+        .box li {
+            /*display: block;*/
+            height: 2em;
+            margin: .5em 1em;
+        }
+        .trades li span {
+            font-size: .8em;
+            display: block;
+            text-align:right;
+        }
+        .inventory .name {
+            padding-right: .2em;
+        }
+        .inventory li a.item {
+            color: black;
+        }
+        .inventory .quantity {
+            font-weight: bold;
+            font-size: .95em;
+        }
+        .inventory li .btn {
+            display: none;
+            float: right;
+        }
+        .inventory li:hover .btn {
+            display: inline;
+            position: relative;
+            top: -5px;
+        }
+        #logout {
+            top: -20px;
+            float: right;
+            margin: 0;
+            margin-top: -1.5em;
+        }
+        .user_only {
+            {%if not logged_in%}display: none !important;{%endif%}
+        }
+    </style>
+    <script type="text/javascript">
+        $(function() {
+
+        })
+    </script>
+{% endblock %}
+
+{% block content %}
+<div id="logout" class="user_only"><a href="/user/logout">Logout</a></div>
+<div class="user"><h1>{{user.name|title}}</h1> (balance: {{user.balance}})</div>
+
+<div class="box inventory">
+<h2>Inventory <a href="/order?type=bid" type="button" class="user_only btn btn-success">Buy items</a> <a type="button" class="user_only btn btn-info" href="/user/cheat?name={{user.name}}">Add items</a></h2>
+<ul>
+{% for k, v in user.item_inv.iteritems() %}
+    <li><a href="/orders/{{k.key}}" class="item"><span class="name">{{k.name}}</span></a> <span class="quantity">x{{v}}</span> <a href="/order?type=ask&item={{k.key}}&quantity={{v}}" type="button" class="user_only btn btn-success">Sell!</a></li>
+{% endfor %}
+</ul>
+</div>
+<div class="box trades">
+<h2>Trades <a href="/order" type="button" class="user_only btn btn-info">New Trade</a></h2>
+<ul>
+{% for i in user.orders %}
+    <li>{{"Buy" if i.bid else "Sell"}} {{i.quantity}} {{i.item.name}} @ {{i.price}} coins 
+         <span>{% if i.is_filled %} Completed at {{i.cross_price}} coins{%else%}{{i.filled}} units filled.{% endif %}</span></li>
+{% endfor %}
+</ul>
+</div>
+
+{% endblock %}
+

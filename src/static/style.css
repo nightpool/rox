@@ -1,0 +1,90 @@
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans'), local('OpenSans'), url(/static/opensans.woff) format('woff');
+}
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(/static/opensans-semibold.woff) format('woff');
+}
+@font-face {
+    font-family: 'Orbitron';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Orbitron-Light'), local('Orbitron-Regular'), url(/static/orbitron.woff) format('woff');
+}
+@font-face {
+    font-family: 'Orbitron';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Orbitron-Bold'), url(/static/orbitron-bold.woff) format('woff');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans", sans-serif;
+}
+
+body > div.container{
+    width: 80%;
+}
+div {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+div.clearfix {
+    margin:0;
+}
+.header .expando {
+    display: none;
+    height: 1em;
+    overflow: hidden;
+}
+.header {
+    border-bottom: 4px solid #555;
+    /*border: 2px solid #555;*/
+}
+.header h3 {
+    padding-left: 10px;
+    font-family: Orbitron;
+    text-transform: capitalize;
+    float: left;
+    display:inline;
+}
+.header .nav {
+    margin-top: 10px;
+}
+#messages {
+    list-style: none;
+    float: right;
+    margin-bottom: 0;
+    margin-top:16px;
+    margin-right: 2.5em;
+}
+#messages .flash {
+    margin-right: 15px;
+}
+.flash {
+    display: inline;
+    border: solid 2px #46B8DA;
+    background-color: #5BC0DE;
+    border-radius: 8px;
+    white-space: nowrap;
+
+    min-width: 40px;
+    padding: 4px 10px;
+    float: right;
+    color: white;
+}
+.flash.error {
+    background-color: #FF7452;
+    border: solid 2px #E33D3B;
+}
+.flash.warning {
+    background-color: #FFD552;
+    border: solid 2px #FFAD18;
+}

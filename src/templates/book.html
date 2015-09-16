@@ -1,0 +1,58 @@
+{% extends "main.html" %}
+
+{% block title %}Order book{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    
+    <style>
+        .book {
+            width: 45%;
+            float: left;
+            margin: auto 1em;
+            border: 2px #555 solid;
+            min-height: 400px;
+        }
+        #bids {
+            float: right;
+        }
+        .item {
+            margin-bottom: 2em;
+
+            /*text-align: center;*/
+        }
+        .item h3 {
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+            width: 70%;
+        }
+        .item .btn {
+            /*float: right;*/
+            margin-left: 1em;
+        }
+    </style>
+    <script type="text/javascript">
+
+    </script>
+{% endblock %}
+
+{% block content %}
+<div class="item"><h3>{{item.name}}<a href="/order?type=bid&item={{item.key}}" type="button" class="btn btn-success">Buy this item!</a></h3> </div>
+
+<ul class="book" id="asks">
+{% for i in book.asks %}
+    <li>
+        {{i}}
+    </li>
+{% endfor %}
+</ul>
+<ul class="book" id="bids">
+{% for i in book.bids %}
+    <li>
+        {{i}}
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock %}
